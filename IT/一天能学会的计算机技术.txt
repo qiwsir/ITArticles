@@ -1,0 +1,58 @@
+作者：Vamei 出处：http://www.cnblogs.com/vamei
+
+在Quora中看到一个有趣的问题，题目是"What are some useful computer related technical skills I can learn within a day?"，哪些有用的计算机技术，是一天能够学会的？后面的回答很高质量，最受欢迎的答案拿到了2000多个赞。提问人最后将这些有趣的回答收集在一起。简直是程序员“周末干什么”指南。 这些推荐的技术都非常实用。有些技术一天之内只能了解一个皮毛。但如果你之前对这些技术一无所知，大概的了解可以让你遇到困难时，知道还有这么美妙工具的存在。 
+
+#Technical 技术类#
+*版本控制 (Version control):Git, GitHub and SVN ([Link:Git - Getting Started](http://git-scm.com/book/en/Getting-Started)) [版本管理三国志]
+*正则表达式 (Regular expressions) [Python正则表达式](http://www.cnblogs.com/vamei/archive/2012/08/31/2661870.html)
+*学习使用AWK (Linux的文本处理工具)
+*学习使用sed (Linux的文本处理工具)
+*学习使用Grep (Linux的文本搜索工具)
+*学习一些你从没想到的Vim用法。
+*设置网络爬虫，扒些网页和数据。
+*设置一个爬虫，用来填表。
+*编写一个基本的线性代数库 (linear algebra library)，处理矩阵、矢量和相关乘法
+*给这个库增加SVD (Singular Vector Decomposition)
+*给这个库增加求逆矩阵功能 (matrix inversion)
+*给这个库增加最小二乘回归 (least squares regression)
+*优化这个库，让它更有效率的处理稀疏数据。
+*使用Python的列表推导式 (list comprehension) [Python循环对象](http://www.cnblogs.com/vamei/archive/2012/07/09/2582499.html)
+*创建Stack Overflow账户，并学着用这个网站。 (Link:[Stack Overflow](http://stackoverflow.com/))
+*读你最喜欢语言的文档，虽然文档可能让人头皮发麻
+*实施一个简单的机器学习算法
+*用Excel画线图
+*个性化eclipse，加插件
+*学习NoSQL数据库的基本功能
+*学习SQL数据库的基本功能
+*理解SQL和NoSQL数据库的差别，各自的优缺点以及适用场景
+*习惯Linux环境 [Linux的概念与体系](http://www.cnblogs.com/vamei/archive/2012/10/10/2718229.html)
+*一个或者两个排序算法 [排序算法]
+*学用D3 (JavaScript的库，用于数据可视化)
+*学习使用单元测试 [gdb调试]
+*熟悉AWS服务 (亚马逊云服务) 和它们的API
+*学习图论基础
+*每天学习并实践一个算法 [纸上谈兵]
+*理解分布式处理和分布式存储 (CAP理论，MapReduce算法，集群MySQL，PostgreSQL数据库)
+*针对Python的
+>尝试内置函数 [Python内置函数]
+>使用某个框架，比如Flask或Tornado，写一个简单的网站
+>学习itertools模块 [循环器itertools模块]
+>开始玩CheckIO(Python编程游戏网站)
+
+*学习编辑Wikipedia的文章
+*学写Markdown
+*试用LaTeX, BibTex, pgfplots
+*学用命令行 (command line) [Linux常用命令]
+*学用JavaScript (Link:Eloquent JavaScript)
+*如果已经知道了面向对象编程，看一点设计模式
+
+最妙的是这个非技术类部分，仔细想想，非常重要啊。
+
+#Non Technical 非技术类#
+
+*学习园艺
+*学习酿啤酒
+*经历与电脑无关的生活
+*学焊接
+*学打字
+*找一个女孩/男孩约会。 [用21天速成上面的技术类，约会时冒充高科技男？

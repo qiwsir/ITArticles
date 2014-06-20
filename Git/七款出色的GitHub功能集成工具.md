@@ -1,0 +1,49 @@
+#七款出色的GitHub功能集成工具
+
+人气代码共享网站GitHub已经成功吸引到全球无数用户的目光，其代码库规模也保持着傲人的增速——当然，随之而来的则是滚滚不绝的支持与注资。除此之外，也有越来越多的第三方软件与GitHub相对接、旨在为用户提供从项目管理到持续集成再到PaaS云服务等多种功能拓展。
+
+GitHub最近在网站的Integrations专栏中公布了合作关系的具体细节，并表示将通过GitHub开发者计划吸引更多开发人员为其贡献集成方案。在今天的文章中，我们将介绍七款广受好评的工具集成，了解它们如何帮助GitHub用户在自己的开发流程中实现价值提升。
+
+##Asana
+
+Asana是一款项目管理工具，旨在以无需借助电子邮件的前提下帮助用户实现团队合作。目前Asana提供Web应用版本以及面向iOS与Android设备的移动应用版本。
+
+Chartbeat公司工程技术副总裁Nathan Potter表示，Asana已经在该公司内部被广泛用于任务管理工作。作为一家实时Web分析企业，Chartbeat正是通过GitHub进行代码库管理。“我曾经在2012为参与到Asana-GitHub集成的编写工作当中，”Potter回忆道。在GitHub开源插件系统的支持下，这款集成方案正式上线启用。当代码提交结果在GitHub上付诸运行时，Asana会为其创建一个任务ID、同时自动配备一条指向提交内容的链接。
+ 
+##CircleCI
+
+CircleCI是一款面向Web开发人员的持续集成与部署工具。Intercom公司CTO Ciaran Lee发现，GitHub与CircleCI这一组合能够帮助用户显著节约时间。作为一家专门为网络企业提供客户交流工具的厂商，Intercom公司将其代码保存在GitHub当中并通过CircleCI进行代码运行测试。
+
+“它每一天都能为我们节约数个小时的工作周期，”Lee表示。他同时补充称，CircleCI与GitHub的协作几乎完全以自动化方式进行。Lee在实际操作中感受到的惟一缺憾在于，同时在GitHub上使用CircleCI与Code Climate（一款代码质量分析工具）时会出现冲突。Intercom不得不在二者中选择其一，但Lee相信GitHub正在着手修复这一问题。
+
+##CloudBees
+
+CloudBees是一套Java PaaS解决方案，它利用Jenkins持续集成机制帮助客户更为快捷地交付更多软件成果。作为一家为商业客户提供峰值负载与能源传输信息的企业，Viridity Energy公司利用CLoudBees进行质量保障测试、构建生产环境并将其作为二进制代码存储库，Viridity公司工程技术副总裁Duncan DeVore指出。在GitHub与CloudBees的集成协作下，该公司顺利完成了模块创建、分布式应用程序开发以及源代码存储外加问题追踪等工作。Viridity利用云模式取代了原有的内部系统。
+
+“我们选择云模式的原因在于，我们希望能将自己的主要精力集中在创建业务软件而非打理部署事务与解决故障难题身上，”DeVore解释道。
+
+##Code Climate
+
+Code Climate为Ruby on Rails以及JavaScript项目提供静态分析功能。作为一项托管服务，它所访问的代码被保存在一台GitHub服务器上，并通过互联网进行数据传输。众包网站Kickstarter就使用Code Climate与GitHub集成方案进行漏洞排查工作。
+
+“当我们将代码提交至GitHub时，Web触发机制会自动通知Code Climate并由其对变更内容进行分析，”Kickstarter网站运营工程师Aaron Suggs表示。“Code Climate的分析结果会以链接形式被纳入我们的提取请求当中。Code Climate还能通过电子邮件和我们的聊天室通知开发人员严重事态的最新进展情况。”Kickstarter网站同时利用Code Climate的最近功能将评论反馈发送至GitHub提取请求当中。
+
+##Pivotal Tracker
+
+Pivotal Tracker是一款由Pivotal实验室开发的敏捷项目管理工具。医学杂志《Cureus》就在利用Pivotal Tracker与其GitHub代码库相结合以进行任务管理工作。
+
+“在代码库中的每一项提交内容中，除了固有的Tracker故事ID与状态之外，我们还额外添加了对应提交者的身份验证信息，”《Cureus》杂志工程技术副总裁Chris Barretto指出。“当提交内容被推送至GitHub上的主分支中时，背景故事将被更新至Tracker并作为最新状态，同时故事评论也会被嵌入到GitHub提交结果当中。”尽管对于Pivotal Tracker与GitHub集成方案的实际效果表示满意，《Cureus》方面仍然提出了几项改进愿望，其中包括希望在Pivotal Tracker中为每个项目设置通知机制。
+
+##Travis CI
+
+作为同时提供托管与防火墙后版本的解决方案，Travis CI是一款用于持续集成、部署与测试的工具。在线零售企业ModCloth公司一年前为了降低管理成本而利用Travis CI替代了原有Jenkins服务器，并在此后一直使用GitHub代码库。GitHub与Travis CI通过GitHub API实现对接，ModCloth公司高级软件工程师Dan Buch表示。
+
+尽管对GitHub的表现感到满意，ModCloth方面仍然为该平台提出了一系列改进意见，Buch指出。“他们的功能交付速度无法满足我们的业务发展需求。”
+
+##TenXer
+
+TenXer生产力分析工具旨在帮助工程师了解团队的服务使用情况（包括GitHub在内），从而掌握对方的工作习惯。TenXer可通过标准GitHub API或者利用GitHub OAuth登陆TenXer的方式实现双方集成，TenXer市场推广官员JP Patil指出。
+
+“对于GitHub Enterprise用户来说，客户需要在内部防火墙之后安装TenXer Agent。TenXer Agent利用同一API与GitHub Enterprise进行通信，但能够通过安全端口根据需求将数据推送至TenXer服务器当中，”Patil指出。当GitHub用户为TenXer提供通过该API访问数据的必要权限时，TenXer能够追踪一系列指标与数据点、从而完成分析工作。
+
+[英文网址](http://www.infoworld.com/slideshow/147333/programmer-picks-7-great-github-integrations-239832#slide1)
