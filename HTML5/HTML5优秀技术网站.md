@@ -67,6 +67,7 @@ css3按钮大集合
     （中文地址）http://bbs.html5cn.org/thread-3115-1-1.html
 
 利用HTML 5和JavaScript创建绘图应用
+
     （中文地址）http://bbs.html5cn.org/thread-2655-1-1.html
 
 20 Free Responsive HTML & CSS Templates
@@ -107,4 +108,6 @@ Vertical Centering With
 
     （中文地址）http://blog.themeforest.net/tutorials/vertical-centering-with-css/
 
+好用的HTML5视频播放器
 
+    (github)https://github.com/qiwsir/BitJSCode/tree/master/projekktor-1.3.09
