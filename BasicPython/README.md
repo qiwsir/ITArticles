@@ -21,3 +21,5 @@
 [点击这里看上图来源](https://github.com/qiwsir/ITArticles/blob/master/Python/Python%E7%8E%B0%E5%9C%A8%E6%88%90%E4%B8%BA%E7%BE%8E%E5%9B%BD%E5%90%8D%E6%A0%A1%E4%B8%AD%E6%9C%80%E6%B5%81%E8%A1%8C%E7%9A%84%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%E8%AF%AD%E8%A8%80.md)
 
 综上，我有了这样一个冲动，做一个栏目，面对零基础要学习Python的朋友，面对将python做为第一门高级语言的朋友。这就是开始本栏目的初衷。
+
+###[点击这里，进入本教程的目录](./index.md)
