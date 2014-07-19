@@ -107,3 +107,8 @@ jQuery交互式缩放地图插件
 JavaScript实现自适应宽度的瀑布流 
 
     （中文地址）http://www.html5cn.org/article-4652-3.html
+
+超棒的仪表盘javascript类库 - justGage
+
+    (中文地址)http://bbs.html5cn.org/thread-9120-1-1.html
+
