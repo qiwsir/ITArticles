@@ -112,3 +112,6 @@ JavaScript实现自适应宽度的瀑布流
 
     (中文地址)http://bbs.html5cn.org/thread-9120-1-1.html
 
+推荐几个不错的jQuery图表插件
+
+    http://bbs.html5cn.org/thread-2903-1-16.html
