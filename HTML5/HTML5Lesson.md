@@ -36,3 +36,54 @@ Opera, Apple, 以及 Mozilla 反对W3C。2004年，Opera 得 Ian Hickson 发起�
 - 容忍严格和宽松，其继承过往
 - 多媒体表现
 - 众多浏览器支持
+
+##HTML5开发
+
+**HTML5开发三剑客：HTML5/CSS3/JS**
+
+###HTML5
+
+HTML5的课程已经很多。此处仅仅简单介绍一些可能与课件开发比较紧密的标签。
+
+- 一般结构
+
+以下显示HTML5文件的一般结构。提醒：养成好的结构习惯
+
+    <!DOCTYPE HTML>
+    <html>
+        <head>
+            <!-- something 
+            编码/TITLE/CSS链接/JS链接...
+            -->
+        </head>
+
+        <body>
+            <!-- something  -->
+        </body>
+    </html>
+
+- 主要标签
+
+HTML4的都可以用，但是有的不倡导使用。
+
+如<section>/<article>/<aside>标签，是HTML5独有。类似于<div>的功能。
+
+下面主要说明与课件制作有关的标签：
+
+
+###CSS3
+
+
+###JS
+
+##视频播放器
+
+##画布中的交互
+
+##自适应页面
+
+##工具推荐
+
+##作品欣赏
+
+##HTML5与SCORM标准
