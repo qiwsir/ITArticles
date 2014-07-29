@@ -41,11 +41,9 @@ Opera, Apple, 以及 Mozilla 反对W3C。2004年，Opera 得 Ian Hickson 发起�
 
 **HTML5开发三剑客：HTML5/CSS3/JS**
 
-###HTML5
-
 HTML5的课程已经很多。此处仅仅简单介绍一些可能与课件开发比较紧密的标签。
 
-- 一般结构
+###一般结构
 
 以下显示HTML5文件的一般结构。提醒：养成好的结构习惯
 
@@ -62,7 +60,42 @@ HTML5的课程已经很多。此处仅仅简单介绍一些可能与课件开发
         </body>
     </html>
 
-- 主要标签
+###<head>部分示例
+
+	<head>
+	
+	    <!-- Basics 
+	    html中的meta可以用在这里
+	    -->
+	    <meta charset="utf-8">   <!-- 通常要有 -->
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+	    <title>The example of HTML5</title>
+	
+	    <!-- Mobile 
+	    为了适应移动终端而设置
+	    -->
+	
+	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	    <!-- CSS -->
+	
+	    <link rel="stylesheet" href="css/styles.css">
+	
+	    <!-- In-document CSS -->
+	    
+	    <style>
+	    /* ... */
+	    </style>
+	
+	    <!-- JavaScript -->
+	    
+	    <script src="example.js"></script>
+	
+	</head>
+
+
+###视频
 
 HTML4的都可以用，但是有的不倡导使用。
 
@@ -70,15 +103,27 @@ HTML4的都可以用，但是有的不倡导使用。
 
 下面主要说明与课件制作有关的标签：
 
+- 视频方式一：[<video>...</video>](./codes/index.html)
+- 视频方式二：[JS](/home/qw/Documents/BitJSCode/projekktor-1.3.09/readme.html)
+
+一个视频转化地址：[http://www.firefogg.org](http://www.firefogg.org)
+
+##画布中的交互
+
+引入方法：<canvas id="myCanvas"></canvas>
+
+接下来就是用JS来操作画布上元素的
+
+看精美的举例
+
+1. 滴水效果
+2. [放大镜效果](http://demo.itivy.com/wadda/index.html)
 
 ###CSS3
 
 
 ###JS
 
-##视频播放器
-
-##画布中的交互
 
 ##自适应页面
 
