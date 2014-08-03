@@ -111,3 +111,7 @@ Vertical Centering With
 好用的HTML5视频播放器
 
     (github)https://github.com/qiwsir/BitJSCode/tree/master/projekktor-1.3.09
+
+21个用于移动Web开发的开源框架应用
+
+    （中文地址）http://bbs.html5cn.org/thread-12518-1-1.html
