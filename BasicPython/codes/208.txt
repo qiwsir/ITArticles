@@ -1,0 +1,5 @@
+Learn python with qiwsir.
+There is free python course.
+The website is:
+http://qiwsir.github.io
+Its language is Chinese.
