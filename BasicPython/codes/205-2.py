@@ -1,3 +1,13 @@
+
+"""
+       This is a game.
+       I am Qiwei.
+       I like python.
+       I am writing python articles in my website.
+       My website is http://qiwsir.github.io
+       You can learn python free in it.
+"""
+
 #!/usr/bin/env python
 #coding:utf-8
 
