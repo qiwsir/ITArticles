@@ -15,16 +15,22 @@ class Person:
         self.lang = lang
         self.website = website
         self.email = "qiwsir@gmail.com"
+    
+    def author(self, address):
+        #return self.name
+        return laoqi.name+" in "+address
 
 laoqi = Person("LaoQi")
 info = Person("qiwsir",lang="python",website="qiwsir.github.io")
 
-print "laoqi.name=",laoqi.name
-print "info.name=",info.name
-print "-------"
-print "laoqi.lang=",laoqi.lang
-print "info.lang=",info.lang
-print "-------"
-print "laoqi.website=",laoqi.website
-print "info.website=",info.website
+#print "laoqi.name=",laoqi.name
+print "Author name from laoqi:",laoqi.author("China")
+print "Author name from info:",info.author("Suzhou")
+#print "info.name=",info.name
+#print "-------"
+#print "laoqi.lang=",laoqi.lang
+#print "info.lang=",info.lang
+#print "-------"
+#print "laoqi.website=",laoqi.website
+#print "info.website=",#info.website
 
