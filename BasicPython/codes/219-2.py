@@ -6,9 +6,7 @@ class A:
         print "aaa"
 
 class B(A):
-    def __init__(self):
-        #print "bbb"
-        A.__init__(self)
+    pass
 
 if __name__=="__main__":
     a = A()
