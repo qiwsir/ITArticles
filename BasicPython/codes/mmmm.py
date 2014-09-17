@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #coding:utf-8
 
-web = "https://qiwsir.github.io"
+web = "https://qiwsir.github.io, I am writing a python book on line."
 
 def my_name(name):
     print name
