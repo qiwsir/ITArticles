@@ -1,0 +1,234 @@
+Python自然语言处理实践: 在NLTK中使用斯坦福中文分词器
+发表于 2014年09月24号 由 52nlp	
+
+斯坦福大学自然语言处理组是世界知名的NLP研究小组，他们提供了一系列开源的Java文本分析工具，包括分词器(Word Segmenter)，词性标注工具（Part-Of-Speech Tagger），命名实体识别工具（Named Entity Recognizer），句法分析器（Parser）等，可喜的事，他们还为这些工具训练了相应的中文模型，支持中文文本处理。在使用NLTK的过程中，发现当前版本的NLTK已经提供了相应的斯坦福文本处理工具接口，包括词性标注，命名实体识别和句法分析器的接口，不过可惜的是，没有提供分词器的接口。在google无果和阅读了相应的代码后，我决定照猫画虎为NLTK写一个斯坦福中文分词器接口，这样可以方便的在Python中调用斯坦福文本处理工具。
+
+首先需要做一些准备工作，第一步当然是安装NLTK，这个可以参考我们在gensim的相关文章中的介绍《如何计算两个文档的相似度》，不过这里建议check github上最新的NLTK源代码并用“python setup.py install”的方式安装这个版本：https://github.com/nltk/nltk。这个版本新增了对于斯坦福句法分析器的接口，一些老的版本并没有，这个之后我们也许还会用来介绍。而我们也是在这个版本中添加的斯坦福分词器接口，其他版本也许会存在一些小问题。其次是安装Java运行环境，以Ubuntu 12.04为例，安装Java运行环境仅需要两步：
+
+    sudo apt-get install default-jre
+    sudo apt-get install default-jdk
+    
+最后，当然是最重要的，你需要下载斯坦福分词器的相应文件，包括源代码，模型文件，词典文件等。注意斯坦福分词器并不仅仅支持中文分词，还支持阿拉伯语的分词，需要下载的zip打包文件是这个: Download Stanford Word Segmenter version 2014-08-27，下载后解压。
+
+准备工作就绪后，我们首先考虑的是在nltk源代码里的什么地方来添加这个接口文件。在nltk源代码包下，斯坦福词性标注器和命名实体识别工具的接口文件是这个：nltk/tag/stanford.py ，而句法分析器的接口文件是这个：nltk/parse/stanford.py , 虽然在nltk/tokenize/目录下有一个stanford.py文件，但是仅仅提供了一个针对英文的tokenizer工具PTBTokenizer的接口，没有针对斯坦福分词器的接口，于是我决定在nltk/tokenize下添加一个stanford_segmenter.py文件，作为nltk斯坦福中文分词器的接口文件。NLTK中的这些接口利用了Linux 下的管道（PIPE）机制和subprocess模块，这里直接贴源代码了，感兴趣的同学可以自行阅读:
+
+    #!/usr/bin/env python
+    # -*- coding: utf-8 -*-
+    # Natural Language Toolkit: Interface to the Stanford Chinese Segmenter
+    #
+    # Copyright (C) 2001-2014 NLTK Project
+    # Author: 52nlp <52nlpcn@gmail.com>
+    #
+    # URL: <http://nltk.org/>
+    # For license information, see LICENSE.TXT
+
+    from __future__ import unicode_literals, print_function
+
+    import tempfile
+    import os
+    import json
+    from subprocess import PIPE
+
+    from nltk import compat
+    from nltk.internals import find_jar, config_java, java, _java_options
+
+    from nltk.tokenize.api import TokenizerI
+
+    class StanfordSegmenter(TokenizerI):
+        r"""
+        Interface to the Stanford Segmenter
+
+        >>> from nltk.tokenize.stanford_segmenter import StanfordSegmenter
+        >>> segmenter = StanfordSegmenter(path_to_jar="stanford-segmenter-3.4.1.jar", path_to_sihan_corpora_dict="./data", path_to_model="./data/pku.gz", path_to_dict="./data/dict-chris6.ser.gz")
+        >>> sentence = u"这是斯坦福中文分词器测试"
+        >>> segmenter.segment(sentence)
+        >>> u'\u8fd9 \u662f \u65af\u5766\u798f \u4e2d\u6587 \u5206\u8bcd\u5668 \u6d4b\u8bd5\n'
+        >>> segmenter.segment_file("test.simp.utf8")
+        >>> u'\u9762\u5bf9 \u65b0 \u4e16\u7eaa \uff0c \u4e16\u754c \u5404\u56fd ...
+        """
+        _JAR = 'stanford-segmenter.jar'
+
+        def __init__(self, path_to_jar=None,
+                path_to_sihan_corpora_dict=None,
+                path_to_model=None, path_to_dict=None,
+                encoding='UTF-8', options=None,
+                verbose=False, java_options='-mx2g'):
+            self._stanford_jar = find_jar(
+                self._JAR, path_to_jar,
+                env_vars=('STANFORD_SEGMENTER',),
+                searchpath=(),
+                verbose=verbose
+            )
+            self._sihan_corpora_dict = path_to_sihan_corpora_dict
+            self._model = path_to_model
+            self._dict = path_to_dict
+
+            self._encoding = encoding
+            self.java_options = java_options
+            options = {} if options is None else options
+            self._options_cmd = ','.join('{0}={1}'.format(key, json.dumps(val)) for key, val in options.items())
+        
+        def segment_file(self, input_file_path):
+            """
+            """
+            cmd = [
+                'edu.stanford.nlp.ie.crf.CRFClassifier',
+                '-sighanCorporaDict', self._sihan_corpora_dict,
+                '-textFile', input_file_path,
+                '-sighanPostProcessing', 'true',
+                '-keepAllWhitespaces', 'false',
+                '-loadClassifier', self._model,
+                '-serDictionary', self._dict
+            ]
+            
+            stdout = self._execute(cmd)
+
+            return stdout
+            
+        def segment(self, tokens):
+            return self.segment_sents([tokens])
+
+        def segment_sents(self, sentences):
+            """
+            """
+            encoding = self._encoding
+            # Create a temporary input file
+            _input_fh, self._input_file_path = tempfile.mkstemp(text=True)
+
+            # Write the actural sentences to the temporary input file
+            _input_fh = os.fdopen(_input_fh, 'wb')
+            _input = '\n'.join((' '.join(x) for x in sentences))
+            if isinstance(_input, compat.text_type) and encoding:
+                _input = _input.encode(encoding)
+            _input_fh.write(_input)
+            _input_fh.close()
+                
+            cmd = [
+                'edu.stanford.nlp.ie.crf.CRFClassifier',
+                '-sighanCorporaDict', self._sihan_corpora_dict,
+                '-textFile', self._input_file_path,
+                '-sighanPostProcessing', 'true',
+                '-keepAllWhitespaces', 'false',
+                '-loadClassifier', self._model,
+                '-serDictionary', self._dict
+            ]
+                
+            stdout = self._execute(cmd)
+
+            # Delete the temporary file
+            os.unlink(self._input_file_path)
+
+            return stdout
+                
+        def _execute(self, cmd, verbose=False):
+            encoding = self._encoding
+            cmd.extend(['-inputEncoding', encoding])
+            _options_cmd = self._options_cmd
+            if _options_cmd:
+                cmd.extend(['-options', self._options_cmd])
+
+            default_options = ' '.join(_java_options)
+
+            # Configure java.
+            config_java(options=self.java_options, verbose=verbose)
+
+            stdout, _stderr = java(cmd,classpath=self._stanford_jar, stdout=PIPE, stderr=PIPE)
+            stdout = stdout.decode(encoding)
+
+            # Return java configurations to their default values.
+            config_java(options=default_options, verbose=False)
+
+            return stdout
+            
+        def setup_module(module):
+            from nose import SkipTest
+
+            try:
+                StanfordSegmenter()
+            except LookupError:
+                raise SkipTest('doctests from nltk.tokenize.stanford_segmenter are skipped because the stanford segmenter jar doesn\'t exist')
+                
+我在github上fork了一个最新的NLTK版本，然后在这个版本中添加了stanford_segmenter.py，感兴趣的同学可以自行下载这个代码，放到nltk/tokenize/目录下，然后重新安装NLTK：sudo python setpy.py install. 或者直接clone我们的这个nltk版本，安装后就可以使用斯坦福中文分词器了。
+
+现在就可以在Python NLTK中调用这个斯坦福中文分词接口了。为了方便起见，建议首先进入到解压后的斯坦福分词工具目录下：cd stanford-segmenter-2014-08-27，然后在这个目录下启用ipython，当然默认python解释器也可：
+
+# 初始化斯坦福中文分词器
+In [1]: from nltk.tokenize.stanford_segmenter import StanfordSegmenter
+
+# 注意分词模型，词典等资源在data目录下，使用的是相对路径，
+# 在stanford-segmenter-2014-08-27的目录下执行有效
+# 注意，斯坦福中文分词器提供了两个中文分词模型：
+# ctb.gz是基于宾州中文树库训练的模型
+# pku.gz是基于北大在2005backoof上提供的人名日报语料库
+# 这里选用了pku.gz，方便最后的测试
+In [2]: segmenter = StanfordSegmenter(path_to_jar=”stanford-segmenter-3.4.1.jar”, path_to_sihan_corpora_dict=”./data”, path_to_model=”./data/pku.gz”, path_to_dict=”./data/dict-chris6.ser.gz”)
+
+# 测试一个中文句子，注意u
+In [3]: sentence = u”这是斯坦福中文分词器测试”
+
+# 调用segment方法来切分中文句子，这里隐藏了一个问题，我们最后来说明
+In [4]: segmenter.segment(sentence)
+Out[4]: u’\u8fd9 \u662f \u65af\u5766\u798f \u4e2d\u6587 \u5206\u8bcd\u5668 \u6d4b\u8bd5\n’
+
+# 由于分词后显示的是中文编码，我们把这个结果输出到文件中
+# 不知道有没有同学有在python解释器总显示中文的方法
+In [5]: outfile = open(‘outfile’, ‘w’)
+
+In [6]: result = segmenter.segment(sentence)
+
+# 注意写入到文件的时候要encode 为 UTF-8编码
+In [7]: outfile.write(result.encode(‘UTF-8′))
+
+In [8]: outfile.close()
+
+打开这个outfile文件：
+
+    这 是 斯坦福 中文 分词器 测试
+
+这里同时提供了一个segment_file的调用方法，方便直接对文件进行切分，让我们来测试《中文分词入门之资源》中介绍的backoff2005的测试集pku_test.utf8，来看看斯坦福分词器的效果：
+
+In [9]: result = segmenter.segment_file(‘pku_test.utf8′)
+
+In [10]: outfile = open(‘pku_outfile’, ‘w’)
+
+In [11]: outfile.write(result.encode(‘UTF-8′))
+
+In [12]: outfile.close()
+
+打开结果文件pku_outfile：
+
+>共同 创造 美好 的 新 世纪 ——二○○一年 新年 贺词
+>（ 二○○○年 十二月 三十一日 ） （ 附 图片 1 张 ）
+>女士 们 ， 先生 们 ， 同志 们 ， 朋友 们 ：
+>2001年 新年 钟声 即将 敲响 。 人类 社会 前进 的 航船 就要 驶入 21 世纪 的 新 航程 。 中国 人民 进入 了 向 现代化 建设 >第三 步 战略 目标 迈进 的 新 征程 。
+>在 这个 激动人心 的 时刻 ， 我 很 高兴 通过 中国 国际 广播 电台 、 中央 人民 广播 电台 和 中央 电视台 ， 向 全国 各族 >人民 ， 向 香港 特别 行政区 同胞 、 澳门 特别 行政区 同胞 和 台湾 同胞 、 海外 侨胞 ， 向 世界 各国 的 朋友 们 ， 致以 >新 世纪 第一 个 新年 的 祝贺 ！
+>….
+
+我们用backoff2005的测试脚本来测试一下斯坦福中文分词器在这份测试语料上的效果：
+
+./icwb2-data/scripts/score ./icwb2-data/gold/pku_training_words.utf8 ./icwb2-data/gold/pku_test_gold.utf8 pku_outfile > stanford_pku_test.score
+
+结果如下：
+
+    === SUMMARY:
+    === TOTAL INSERTIONS: 1479
+    === TOTAL DELETIONS: 1974
+    === TOTAL SUBSTITUTIONS: 3638
+    === TOTAL NCHANGE: 7091
+    === TOTAL TRUE WORD COUNT: 104372
+    === TOTAL TEST WORD COUNT: 103877
+    === TOTAL TRUE WORDS RECALL: 0.946
+    === TOTAL TEST WORDS PRECISION: 0.951
+    === F MEASURE: 0.948
+    === OOV Rate: 0.058
+    === OOV Recall Rate: 0.769
+    === IV Recall Rate: 0.957
+    ### pku_outfile 1479 1974 3638 7091 104372 103877 0.946 0.951 0.948 0.058 0.769 0.957
+    
+准确率是95.1%， 召回率是94.6%, F值是94.8%, 相当不错。感兴趣的同学可以测试一下其他测试集，或者用宾州中文树库的模型来测试一下结果。
+
+最后我们再说明一下这个接口存在的问题，因为使用了Linux PIPE模式来调用斯坦福中文分词器，相当于在Python中执行相应的Java命令，导致每次在执行分词时会加载一遍分词所需的模型和词典，这个对文件操作时（segment_file)没有多大的问题，但是在对句子执行分词（segment)的时候会存在很大的问题，每次都加载数据，在实际产品中基本是不可用的。虽然发现斯坦福分词器提供了一个 –readStdin 的读入标准输入的参数，也尝试通过python subprocess中先load 文件，再用的communicate方法来读入标准输入，但是仍然没有解决问题，发现还是一次执行，一次结束。这个问题困扰了我很久，google了很多资料也没有解决问题，欢迎懂行的同学告知或者来解决这个问题，再此先谢过了。That’s all!
+
+注：原创文章，转载请注明出处“我爱自然语言处理”：www.52nlp.cn
+
+本文链接地址：http://www.52nlp.cn/python自然语言处理实践-在nltk中使用斯坦福中文分词器
