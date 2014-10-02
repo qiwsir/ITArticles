@@ -85,8 +85,8 @@
 3. [用Pyton操作数据库(1)](./303.md)
 4. [用Python操作数据库（2）](./304.md)
 5. [用Python操作数据库（3）](./305.md)
-6. [python开发框架](./306.md)
-7. [Hello,第一个网页分析(1)](./307.md)
+6. [python开发框架](./306.md)：框架介绍、Tornado安装
+7. [Hello,第一个网页分析(1)](./307.md)：improt模块、请求处理程序类、tornado.web.RequestHandler
 
 ###内容还在不断更新，欢迎follow me。
 
