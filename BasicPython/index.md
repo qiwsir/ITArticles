@@ -81,12 +81,13 @@
 #第三部分 昨夜西风，亭台谁登
 
 1. [网站的结构](./301.md)：网站组成、MySQL数据库的安装和配置、MySQL的运行
-2. [通过Python连接数据库](./302.md)
+2. [通过Python连接数据库](./302.md)：安装python-MySQLdb，连接MySQL
 3. [用Pyton操作数据库(1)](./303.md)
 4. [用Python操作数据库（2）](./304.md)
 5. [用Python操作数据库（3）](./305.md)
 6. [python开发框架](./306.md)：框架介绍、Tornado安装
-7. [Hello,第一个网页分析](./307.md)：tornado网站的基本结构剖析：improt模块、RequestHandler,HTTPServer,Application,IOLoop
+7. [Hello,第一个网页分析](./307.md)：tornado网站的基本结构剖析：improt模块、RequestHandler, HTTPServer, Application, IOLoop
+8. [实例分析get和post](./308.md)：get()通过URL得到数据和post()通过get_argument()获取数据
 
 ###内容还在不断更新，欢迎follow me。
 
