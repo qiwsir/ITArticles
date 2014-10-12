@@ -24,7 +24,7 @@ while True:
 
     if not num_input.isdigit():
         print "Please input interger."
-    elif int(num_input)<0 and int(num_input)>=100:
+    elif int(num_input)<0 or int(num_input)>=100:
         print "The number should be in 1 to 100."
     else:
         if number==int(num_input):
