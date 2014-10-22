@@ -18,10 +18,11 @@ class IndexHandler(tornado.web.RequestHandler):
 handlers = [(r"/", IndexHandler),]
 
 template_path = os.path.join(os.path.dirname(__file__), "temploop")
+static_path = os.path.join(os.paht.dirname(__file__), "static")
 
 if __name__ == "__main__":
     tornado.options.parse_command_line()
-    app = tornado.web.Application(handlers,template_path)
+    app = tornado.web.Application(handlers, template_path, static)
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
