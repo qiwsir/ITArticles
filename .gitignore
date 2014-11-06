@@ -37,6 +37,9 @@ Thumbs.db
 *.sw[a-z]
 ._*
 
+# md
+*.md~
+
 # PhpStorm (IDE) project files
 .idea/*
 
