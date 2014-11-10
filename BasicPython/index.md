@@ -96,6 +96,7 @@ python中常用的语句和类
 
 python模块（第三方库）说明
 
+1.[requests库](./401.md)：针对http的库，比如post,get等
 
 ###内容还在不断更新，欢迎follow me。
 
