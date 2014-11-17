@@ -96,7 +96,8 @@ python中常用的语句和类
 
 python模块（第三方库）说明
 
-1.[requests库](./401.md)：针对http的库，比如post,get等
+1. [requests库](./401.md)：针对http的库，比如post,get等
+2. [比较json/dictionary的库](./402.md)：比较两个json，直到最底层，并将结果格式化为dict格式
 
 ###内容还在不断更新，欢迎follow me。
 
