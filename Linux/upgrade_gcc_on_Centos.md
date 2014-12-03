@@ -34,7 +34,11 @@ OK,在build_gcc_4.8.1中将gcc已经安装完成
 
     ls /usr/local/bin | grep gcc
 
+看图
+
 ![](http://s3.51cto.com/wyfs02/M02/11/F4/wKiom1LnyHCiZRo_AAJTr7qWpPE641.jpg)
+
+执行
 
     /usr/sbin/update-alternatives --install  /usr/bin/gcc gcc /usr/local/bin/x86_64-unknown-linux-gnu-gcc-4.8.1 40
 
