@@ -36,7 +36,7 @@ OK,在build_gcc_4.8.1中将gcc已经安装完成
 
 看图
 
-![](http://s3.51cto.com/wyfs02/M02/11/F4/wKiom1LnyHCiZRo_AAJTr7qWpPE641.jpg)
+![](http://wxpictures.qiniudn.com/binx86.png)
 
 执行
 
