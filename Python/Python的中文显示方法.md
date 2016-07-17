@@ -30,7 +30,8 @@ python没办法处理非ascii编码的，此时需要自己设置将python的默
     reload(sys) 
     sys.setdefaultencoding('utf8')   
 
-另一个方案是在python的Lib\site-packages文件夹下新建一个sitecustomize.py，内容为： Python代码    
+另一个方案是在/usr/local/lib/python.27/site-packages或者/usr/lib/python2.7下新建一个sitecustomize.py，内容为： Python代码，
+两个路径的原因是因为系统不同的原因，debian和ubuntu存放的目录是后者，其他没有测试。 
 
     # encoding=utf8 
 
@@ -43,3 +44,4 @@ python没办法处理非ascii编码的，此时需要自己设置将python的默
 还有一种解决方案是在程序中所有涉及到编码的地方，强制编码为utf8，即添加代码encode("utf8")，这种方法并不推荐使用，因为一旦少写一个地方，将会导致大量的错误报告.
 
 来源：http://blog.sina.com.cn/s/blog_6b1ed4fb01019d4n.html
+来源：http://blog.sina.com.cn/s/blog_494e45fe0102e3p9.html
